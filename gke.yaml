@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: gpc-gke
-        image: grc.io/
+        image: gcr.io/$PROJECT_ID/gcp
         ports:
         - containerPort: 5000
         env:
