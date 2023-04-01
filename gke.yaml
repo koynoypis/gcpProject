@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gcp-gke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gpc
+  template:
+    metadata:
+      labels: gpc
+    spec:
+      containers:
+      - name: gpc-gke
+        image: grc.io/
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PORT
+            value: "5000"
