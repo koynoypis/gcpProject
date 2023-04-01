@@ -13,9 +13,25 @@ spec:
     spec:
       containers:
       - name: gpc-gke
-        image: gcr.io/$PROJECT_ID/gcp
+        image: gcr.io/pelagic-diorama-382411/gcp
         ports:
         - containerPort: 5000
         env:
           - name: PORT
             value: "5000"
+
+apiVersion: v1
+kind: "Service"
+metadata:
+  name: "gcp-gke-service"
+  namespace: "gpc-prod"
+  labels:
+    app.kubernetes.io/managed-by: "gcp-cloud-build-deploy"
+spec:
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 5000
+  selector:
+    app: "gcp"
+  type: "LoadBalancer"
